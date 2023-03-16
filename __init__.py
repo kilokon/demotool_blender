@@ -19,16 +19,16 @@ bl_info = {
     "version" : (0, 0, 1),
     "location" : "",
     "warning" : "",
-    "category" : "Add Curve"
+    "category" : "Object"
 }
 
 import bpy
 
-class AartiOperator(bpy.types.Operator):
+class CubesOperator(bpy.types.Operator):
     """Creates cubes on cubes"""
     
     bl_label = "Cube Multiplier"
-    bl_idname = "object.aarti_operator"
+    bl_idname = "object.cubes_operator"
 
     def execute(self, context):
 #        ctx = 
@@ -46,7 +46,7 @@ class AartiPanel(bpy.types.Panel):
     """Creates Panel for multiplier on cubes"""
     
     bl_label = "Cube Multiplier"
-    bl_idname = "OBJECT_PT_aarti"
+    bl_idname = "OBJECT_PT_cubes"
     bl_space_type = 'PROPERTIES'
     bl_region_type = 'WINDOW'
     bl_context = "object"
@@ -57,15 +57,15 @@ class AartiPanel(bpy.types.Panel):
         obj = context.object
 
         row = layout.row()
-        row.label(text="Hello world!", icon='WORLD_DATA')
+        row.label(text="Cube Multiplier")
+
+#        row = layout.row()
+#        row.label(text="Active object is: " + obj.name)
+#        row = layout.row()
+#        row.prop(obj, "name")
 
         row = layout.row()
-        row.label(text="Active object is: " + obj.name)
-        row = layout.row()
-        row.prop(obj, "name")
-
-        row = layout.row()
-        row.operator("mesh.primitive_cube_add")
+        row.operator("object.cubes_operator")
     
 #def menu_func(self, context):
 #    self.layout.operator(AartiOperator.bl_idname, text=AartiOperator.bl_label)
@@ -73,13 +73,13 @@ class AartiPanel(bpy.types.Panel):
 
 
 def register():
-    bpy.utils.register_class(AartiOperator)
-    bpy.utils.register_class(AartiPanel)
+    bpy.utils.register_class(CubesOperator)
+    bpy.utils.register_class(CubesPanel)
 #    bpy.types.VIEW3D_MT_object.append(menu_func)
 
 def unregister():
-    bpy.utils.unregister_class(AartiOperator)
-    bpy.utils.unregister_class(AartiPanel)
+    bpy.utils.unregister_class(CubesOperator)
+    bpy.utils.unregister_class(CubesPanel)
 #    bpy.types.VIEW3D_MT_object.append(menu_func)
     
 if __name__ == "__main__":
